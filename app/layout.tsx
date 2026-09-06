@@ -26,7 +26,29 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${montserrat.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CafeOrCoffeeShop",
+              name: "Coffee Rush",
+              description:
+                "Family-owned Florida coffee company with roots going back to 1994, serving Pinellas, Hillsborough, and Sarasota County.",
+              url: "https://coffee-rush.vercel.app",
+              address: {
+                "@type": "PostalAddress",
+                addressRegion: "FL",
+                addressCountry: "US",
+              },
+              areaServed: ["Pinellas County, FL", "Hillsborough County, FL", "Sarasota County, FL"],
+              foundingDate: "1994",
+            }),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
